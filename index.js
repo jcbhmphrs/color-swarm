@@ -168,9 +168,9 @@ function spawnEnemies(){
 function animate() {
     animationId = requestAnimationFrame(animate);
     // -----------------------------------------------------------------------red hot score keeping------------
-    score.style.color = `hsl(${100-(6*projectiles.length)}, 100%, ${100-(5*projectiles.length)}%)`;
+    score.style.color = `hsl(${100-(6*projectiles.length)}, 100%, 50%)`;
     // -----------------clear canvas--------------------
-    context.fillStyle = 'rgb(0, 0, 0)';
+    context.fillStyle = 'rgba(0, 0, 0, 0.5)';
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = 'rgb(255,255,255)';
     context.fillRect(200,20,25*projectiles.length, 20);
@@ -237,7 +237,7 @@ addEventListener('click', (event)=>{
         x:8* Math.cos(angle),
         y:8* Math.sin(angle)
     };
-    projectiles.push(new Projectile(x, y, 5, `hsl(${startingPlayerColorHue}, 100%, ${100-(7*projectiles.length)}%)`, velocity));
+    projectiles.push(new Projectile(x, y, 5, `hsl(${startingPlayerColorHue}, 100%, 50%)`, velocity));
     console.log(100-(7*projectiles.length));
 });
 
