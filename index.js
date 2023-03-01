@@ -10,6 +10,8 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 startGame.style.backgroundColor = `hsl(${Math.random()*360},50%,50%)`;
 startingPlayerColorHue = Math.random()*360;
+
+
 function preGame() {
     startingPlayerColorHue = Math.random()*360;
 
@@ -74,7 +76,7 @@ class Enemy {
     draw() {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        context.fillStyle = `hsl(${this.color}, ${this.radius * 1.7}%, 50%)`;
+        context.fillStyle = `hsl(${this.color}, ${this.radius}%, 50%)`;
         context.fill();
     };
     update(){
@@ -138,7 +140,7 @@ function init() {
 
 // -----------------------------------------Spawn enemies ---------------------------------------
 function spawnEnemies(){
-        const radius = Math.random() * (40 - 10) + 10;
+        const radius = Math.random() * (70 - 15) + 15;
         let x = null;
         let y = null;
         if(Math.random() > 0.5) {
@@ -153,8 +155,8 @@ function spawnEnemies(){
         const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
         
         const velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle)
+            x: 2.5*Math.cos(angle),
+            y: 2.5*Math.sin(angle)
         };
 
         enemies.push(new Enemy(x, y, radius, rHUE, velocity))
@@ -234,8 +236,8 @@ function animate() {
 addEventListener('click', (event)=>{
     const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
     const velocity = {
-        x:8* Math.cos(angle),
-        y:8* Math.sin(angle)
+        x:7.5* Math.cos(angle),
+        y:7.5* Math.sin(angle)
     };
     projectiles.push(new Projectile(x, y, 5, `hsl(${startingPlayerColorHue}, 100%, 50%)`, velocity));
     console.log(100-(7*projectiles.length));
@@ -244,7 +246,7 @@ addEventListener('click', (event)=>{
 startGame.addEventListener('click', ()=>{
     init();
     animate();
-    setInterval(spawnEnemies, 2000);
+    setInterval(spawnEnemies, 2100);
     startGame.style.display = 'none';
 });
 
